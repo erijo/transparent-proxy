@@ -57,7 +57,6 @@ class ProxyClient(http.HTTPClient):
                 next
 
             for value in values:
-                log.msg("Sending header: %s = %s" % (key, value))
                 self.sendHeader(key, value)
         self.endHeaders()
 
@@ -77,7 +76,6 @@ class ProxyClient(http.HTTPClient):
         self.originalRequest.setResponseCode(int(code), message)
 
     def handleHeader(self, key, value):
-        log.msg("Got server header: %s = %s" % (key, value))
         if key.lower() == 'content-length':
             self.contentLength = value
         else:
